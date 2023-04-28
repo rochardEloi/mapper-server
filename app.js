@@ -35,11 +35,11 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
- 
-
+//app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/groups", groupsRoute);
 app.use("/api/elements", elementsRoute);
+
 app.use("/",(req, res)=>{
     res.status(201).json({
         message : "Server online"
@@ -48,3 +48,5 @@ app.use("/",(req, res)=>{
 
 
 module.exports = app;
+
+//https://mapper-ky2i.onrender.com

@@ -25,6 +25,7 @@ exports.createElement = async (req, res) => {
         createdAt: Date.now(),
         location: req.body.location,
         group_id: group._id,
+        mac : req.body.mac ? req.body.mac.toLowerCase() : "",
         status: "Enable"
     })
 
@@ -88,9 +89,12 @@ exports.updateElement = (req, res)=>{
         return res.status(400).send({message: "Element not specified"})
     }
 
+    if(req.body.mac)  
+      req.body.mac = req.body.mac.toLowerCase()
 
     Elements.updateOne({_id : req.params.id}, {
-        ...req.body
+        ...req.body,
+        
     })
         .then((response)=>{
             res.status(201).json({message : "updated", response : response})
